@@ -1,3 +1,5 @@
+require_relative 'lib/association_data_deleter/version'
+
 Gem::Specification.new do |spec|
   spec.name          = "association_data_deleter"
   spec.version       = AssociationDataDeleter::VERSION
