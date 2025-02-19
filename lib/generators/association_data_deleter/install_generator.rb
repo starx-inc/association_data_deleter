@@ -3,10 +3,12 @@ module AssociationDataDeleter
     class InstallGenerator < Rails::Generators::Base
       desc "Installs AssociationDataDeleter by copying migrations files to your application."
 
+      source_root File.expand_path('templates', __dir__)
+
       # マイグレーションファイルをホストアプリへコピーするタスク
       def copy_migrations
         say_status("info", "Copying migrations from AssociationDataDeleter...", :blue)
-        rake("railties:install:migrations FROM=association_data_deleter")
+        migration_template "create_deletion_jobs.rb", "db/migrate/create_deletion_jobs.rb"
       end
 
       # オプションとして、コピー後にマイグレーションを実行するかユーザーに確認する
