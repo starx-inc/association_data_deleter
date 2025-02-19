@@ -1,6 +1,8 @@
 module AssociationDataDeleter
   module Generators
-    class InstallGenerator < Rails::Generators::Base
+    class InstallGenerator < ::Rails::Generators::Base
+      include ::Rails::Generators::Migration
+
       desc "Installs AssociationDataDeleter by copying migrations files to your application."
 
       source_root File.expand_path('templates', __dir__)
