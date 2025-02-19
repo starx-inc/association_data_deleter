@@ -5,7 +5,7 @@ Gem::Specification.new do |spec|
   spec.author        = "Kanata Hiraguchi"
   spec.version       = AssociationDataDeleter::VERSION
   spec.summary       = "Delete data in child->parent for canceled companies or brands"
-  spec.files         = Dir["lib/**/*", "README.md"]
+  spec.files         = Dir["lib/**/*", "db/**/*", "README.md"]
   spec.require_paths = ["lib"]
 
   # Rails/ActiveRecordを使う場合
