@@ -21,6 +21,11 @@ module AssociationDataDeleter
           say_status("info", "Remember to run `rails db:migrate` later.", :yellow)
         end
       end
+
+      def self.next_migration_number(_dirname)
+        sleep 1
+        Time.new.utc.strftime('%Y%m%d%H%M%S')
+      end
     end
   end
 end
