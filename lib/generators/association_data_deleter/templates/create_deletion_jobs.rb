@@ -1,4 +1,4 @@
-class CreateDeletionJobs < ActiveRecord::Migration[6.1]
+class CreateDeletionJobs < ActiveRecord::Migration[5.1]
   def change
     create_table :deletion_jobs, id: :bigint do |t|
       t.bigint :target_id, null: false, comment: "削除対象レコードID (例: brand.id, company.id)"
