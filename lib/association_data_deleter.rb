@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 require_relative "association_data_deleter/version"
-require_relative "association_data_deleter/models"
 
 require_relative "association_data_deleter/railtie" if defined?(Rails)
+
+require_relative "association_data_deleter/models/deletion_job"
+require_relative "association_data_deleter/models/deletion_job_detail"
 
 module AssociationDataDeleter
   class Error < StandardError; end
