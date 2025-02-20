@@ -20,6 +20,13 @@ If bundler is not being used to manage dependencies, install the gem by executin
 gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
 ```
 
+Add `deletion_jobs`, `deletion_job_details` tables to your database:
+
+```bash
+bundle exec rails generate association_data_deleter:install
+bundle exec rails db:migrate
+```
+
 ## Usage
 
 TODO: Write usage instructions here
