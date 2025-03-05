@@ -1,0 +1,103 @@
+/ ジョブ詳細画面
+.container
+  h1 
+    | データ削除ジョブ詳細 ##{@deletion_job.id}
+  
+  / フラッシュメッセージ
+  - if flash[:notice].present?
+    .flash.flash--notice
+      = flash[:notice]
+  
+  / ジョブ情報
+  .job-info
+    h2 ジョブ情報
+    .table-responsive
+      table.table.table-striped
+        tbody
+          tr
+            th ID
+            td = @deletion_job.id
+          tr
+            th ターゲットタイプ
+            td = @deletion_job.target_type
+          tr
+            th ターゲットID
+            td = @deletion_job.target_id
+          tr
+            th ステータス
+            td 
+              span class="status status--#{@deletion_job.status}"
+                = @deletion_job.status
+          tr
+            th 削除数/対象数
+            td 
+              - if @deletion_job.target_count.present?
+                = "#{@deletion_job.deleted_count || 0}/#{@deletion_job.target_count}"
+              - else
+                = "#{@deletion_job.deleted_count || 0}/-"
+          tr
+            th 準備フェーズAWS BatchジョブID
+            td = @deletion_job.prepare_aws_batch_job_id || '-'
+          tr
+            th 削除フェーズAWS BatchジョブID
+            td = @deletion_job.delete_aws_batch_job_id || '-'
+          tr
+            th 準備開始時刻
+            td = @deletion_job.prepare_started_at&.strftime('%Y-%m-%d %H:%M:%S') || '-'
+          tr
+            th 準備完了時刻
+            td = @deletion_job.prepare_finished_at&.strftime('%Y-%m-%d %H:%M:%S') || '-'
+          tr
+            th 削除開始時刻
+            td = @deletion_job.delete_started_at&.strftime('%Y-%m-%d %H:%M:%S') || '-'
+          tr
+            th 削除完了時刻
+            td = @deletion_job.delete_finished_at&.strftime('%Y-%m-%d %H:%M:%S') || '-'
+          tr
+            th エラーメッセージ
+            td 
+              - if @deletion_job.error_message.present?
+                .error-message = @deletion_job.error_message
+              - else
+                | -
+          tr
+            th 作成日時
+            td = @deletion_job.created_at.strftime('%Y-%m-%d %H:%M:%S')
+          tr
+            th 更新日時
+            td = @deletion_job.updated_at.strftime('%Y-%m-%d %H:%M:%S')
+  
+  / ジョブ詳細
+  .job-details
+    h2 削除ジョブ詳細 (#{@deletion_job_details.count}件)
+    .table-responsive
+      table.table.table-striped
+        thead
+          tr
+            th ID
+            th テーブル名
+            th 外部キー
+            th ステータス
+            th 削除数/対象数
+            th 開始時刻
+            th 完了時刻
+        tbody
+          - @deletion_job_details.each do |detail|
+            tr
+              td = detail.id
+              td = detail.table_name
+              td = detail.foreign_key || '-'
+              td 
+                span class="status status--#{detail.status}"
+                  = detail.status
+              td 
+                - if detail.target_count.present?
+                  = "#{detail.deleted_count || 0}/#{detail.target_count}"
+                - else
+                  = "#{detail.deleted_count || 0}/-"
+              td = detail.started_at&.strftime('%Y-%m-%d %H:%M:%S') || '-'
+              td = detail.finished_at&.strftime('%Y-%m-%d %H:%M:%S') || '-'
+  
+  / 戻るボタン
+  .actions
+    = link_to "一覧に戻る", association_data_deleter.deletion_jobs_path, class: "button" 

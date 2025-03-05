@@ -1,0 +1,131 @@
+doctype html
+html
+  head
+    title データ削除ジョブ管理 | AssociationDataDeleter
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "association_data_deleter/application", media: "all"
+    
+    style
+      | .container {
+      |   padding: 20px;
+      | }
+      | 
+      | h1, h2 {
+      |   margin-bottom: 20px;
+      | }
+      | 
+      | h2 {
+      |   margin-top: 30px;
+      |   border-bottom: 1px solid #dee2e6;
+      |   padding-bottom: 5px;
+      | }
+      | 
+      | .flash {
+      |   padding: 10px;
+      |   margin-bottom: 20px;
+      |   border-radius: 4px;
+      | }
+      | 
+      | .flash--notice {
+      |   background-color: #d4edda;
+      |   color: #155724;
+      | }
+      | 
+      | .table-responsive {
+      |   overflow-x: auto;
+      | }
+      | 
+      | .table {
+      |   width: 100%;
+      |   border-collapse: collapse;
+      | }
+      | 
+      | .table th, .table td {
+      |   padding: 12px;
+      |   text-align: left;
+      |   border-bottom: 1px solid #ddd;
+      | }
+      | 
+      | .table th {
+      |   background-color: #f8f9fa;
+      |   width: 250px;
+      | }
+      | 
+      | .status {
+      |   display: inline-block;
+      |   padding: 4px 8px;
+      |   border-radius: 4px;
+      |   font-size: 12px;
+      | }
+      | 
+      | .status--preparing {
+      |   background-color: #cff4fc;
+      |   color: #055160;
+      | }
+      | 
+      | .status--ready {
+      |   background-color: #fff3cd;
+      |   color: #664d03;
+      | }
+      | 
+      | .status--in_progress {
+      |   background-color: #ffe5d0;
+      |   color: #7f2704;
+      | }
+      | 
+      | .status--completed {
+      |   background-color: #d1e7dd;
+      |   color: #0f5132;
+      | }
+      | 
+      | .status--failed {
+      |   background-color: #f8d7da;
+      |   color: #842029;
+      | }
+      | 
+      | .status--pending {
+      |   background-color: #e2e3e5;
+      |   color: #41464b;
+      | }
+      | 
+      | .error-message {
+      |   color: #842029;
+      |   padding: 10px;
+      |   background-color: #f8d7da;
+      |   border-radius: 4px;
+      |   white-space: pre-wrap;
+      |   max-height: 200px;
+      |   overflow-y: auto;
+      | }
+      | 
+      | .actions {
+      |   margin-top: 20px;
+      | }
+      | 
+      | .button {
+      |   display: inline-block;
+      |   padding: 6px 12px;
+      |   background-color: #0d6efd;
+      |   color: white;
+      |   text-decoration: none;
+      |   border-radius: 4px;
+      | }
+      | 
+      | .button--small {
+      |   padding: 4px 8px;
+      |   font-size: 12px;
+      | }
+      | 
+      | .button:hover {
+      |   background-color: #0b5ed7;
+      |   color: white;
+      | }
+      | 
+      | .job-info, .job-details {
+      |   margin-bottom: 30px;
+      | }
+
+  body
+    .association-data-deleter-wrapper
+      = yield 

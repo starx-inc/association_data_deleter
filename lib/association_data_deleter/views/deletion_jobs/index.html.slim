@@ -1,0 +1,38 @@
+/ 進捗管理画面
+.container
+  h1 データ削除ジョブ進捗管理
+  
+  / フラッシュメッセージ
+  - if flash[:notice].present?
+    .flash.flash--notice
+      = flash[:notice]
+  
+  / テーブルスタイル
+  .table-responsive
+    table.table.table-striped
+      thead
+        tr
+          th ID
+          th ターゲットタイプ
+          th ターゲットID
+          th ステータス
+          th 削除数/対象数
+          th 作成日時
+          th 詳細
+      tbody
+        - @deletion_jobs.each do |job|
+          tr
+            td = job.id
+            td = job.target_type
+            td = job.target_id
+            td 
+              span class="status status--#{job.status}"
+                = job.status
+            td 
+              - if job.target_count.present?
+                = "#{job.deleted_count || 0}/#{job.target_count}"
+              - else
+                = "#{job.deleted_count || 0}/-"
+            td = job.created_at.strftime('%Y-%m-%d %H:%M:%S')
+            td
+              = link_to "詳細", association_data_deleter.deletion_job_path(job), class: "button button--small" 
