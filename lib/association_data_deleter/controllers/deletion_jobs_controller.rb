@@ -4,13 +4,15 @@ module AssociationDataDeleter
     
     # デフォルトのindex挙動をオーバーライドして、DeletionJobとその詳細を取得
     def index
-      @deletion_jobs = AssociationDataDeleter::DeletionJob.all.order(created_at: :desc)
+      # 必要なロジックを記述
+      # 例: @deletion_jobs = モデル取得など
     end
 
     # ジョブの詳細を表示
     def show
-      @deletion_job = AssociationDataDeleter::DeletionJob.find(params[:id])
-      @deletion_job_details = @deletion_job.deletion_job_details.order(created_at: :desc)
+      @id = params[:id]
+      # 必要なロジックを記述
+      # 例: @deletion_job = モデル.find(params[:id])など
     end
   end
 end 
