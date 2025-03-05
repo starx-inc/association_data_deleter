@@ -19,20 +19,24 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>レコードID</th>
+      <th>テーブル名</th>
+      <th>外部キー</th>
       <th>ステータス</th>
+      <th>対象件数</th>
+      <th>削除件数</th>
       <th>エラー内容</th>
-      <th>作成日時</th>
     </tr>
   </thead>
   <tbody>
     <% @deletion_job_details.each do |detail| %>
       <tr>
         <td><%= detail.id %></td>
-        <td><%= detail.record_id %></td>
+        <td><%= detail.table_name %></td>
+        <td><%= detail.foreign_key %></td>
         <td><%= detail.status %></td>
+        <td><%= detail.target_count %></td>
+        <td><%= detail.deleted_count %></td>
         <td><%= detail.error_message %></td>
-        <td><%= detail.created_at %></td>
       </tr>
     <% end %>
   </tbody>
