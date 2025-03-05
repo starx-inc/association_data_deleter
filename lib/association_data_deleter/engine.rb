@@ -1,15 +1,27 @@
 module AssociationDataDeleter
   class Engine < ::Rails::Engine
-    isolate_namespace AssociationDataDeleter
+    # 名前空間を分離するが、テーブル名プレフィックスは使わない設定
+    # 通常のisolate_namespaceの代わりに、必要な設定のみを手動で行う
     
-    # テーブル名のプレフィックスを無効化
-    initializer "association_data_deleter.set_table_name" do |app|
-      ActiveSupport.on_load(:active_record) do
-        ActiveRecord::Base.descendants.each do |model|
-          if model.name.start_with?('AssociationDataDeleter::')
-            model.table_name_prefix = ''
-          end
-        end
+    # Railsの内部で使われる名前空間
+    config.engine_name = "association_data_deleter"
+    
+    # ビューの名前空間
+    paths["app/views"] = "lib/association_data_deleter/views"
+    
+    # ヘルパーの名前空間
+    ActiveSupport.on_load(:action_controller) do
+      helper AssociationDataDeleter::Engine.helpers
+    end
+    
+    # テーブル名プレフィックスを明示的に空に設定
+    initializer "association_data_deleter.set_table_name_prefix", before: :load_config_initializers do
+      ActiveRecord::Base.table_name_prefix = '' if defined?(ActiveRecord)
+      
+      # 念のため個別モデルにも設定
+      config.to_prepare do
+        AssociationDataDeleter::DeletionJob.table_name = "deletion_jobs" if defined?(AssociationDataDeleter::DeletionJob)
+        AssociationDataDeleter::DeletionJobDetail.table_name = "deletion_job_details" if defined?(AssociationDataDeleter::DeletionJobDetail)
       end
     end
     
