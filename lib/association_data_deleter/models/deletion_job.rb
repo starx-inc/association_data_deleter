@@ -1,6 +1,9 @@
 module AssociationDataDeleter
   class DeletionJob < ActiveRecord::Base
-    self.table_name = "deletion_jobs"
+    # テーブル名を明示的に指定（クラスメソッドとして定義して強制）
+    def self.table_name
+      "deletion_jobs"
+    end
     
     has_many :deletion_job_details, 
              class_name: "AssociationDataDeleter::DeletionJobDetail",
