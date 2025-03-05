@@ -1,0 +1,26 @@
+<h1>削除ジョブ一覧</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>モデル名</th>
+      <th>ステータス</th>
+      <th>作成日時</th>
+      <th>詳細</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @deletion_jobs.each do |job| %>
+      <tr>
+        <td><%= job.id %></td>
+        <td><%= job.model_name %></td>
+        <td><%= job.status %></td>
+        <td><%= job.created_at %></td>
+        <td>
+          <%= link_to "詳細", deletion_job_path(job), class: "btn btn-sm btn-info" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table> 
