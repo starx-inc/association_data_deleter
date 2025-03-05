@@ -1,5 +1,9 @@
 module AssociationDataDeleter
   class DeletionJob < ActiveRecord::Base
-    has_many :deletion_job_details, dependent: :destroy
+    self.table_name = "deletion_jobs"
+    
+    has_many :deletion_job_details, 
+             class_name: "AssociationDataDeleter::DeletionJobDetail",
+             dependent: :destroy
   end
 end
