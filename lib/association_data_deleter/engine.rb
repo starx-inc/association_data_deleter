@@ -1,6 +1,5 @@
 module AssociationDataDeleter
   class Engine < ::Rails::Engine
-    # Railsの内部で使われる名前空間
     config.engine_name = "association_data_deleter"
     
     # ビューの検索パスを明示的に設定
@@ -11,9 +10,6 @@ module AssociationDataDeleter
       
       # ビューパスをアプリケーションに追加
       ActionController::Base.prepend_view_path(view_path)
-      
-      # アセットパスの追加
-      app.config.assets.paths << view_path if app.config.respond_to?(:assets)
     end
     
     # テンプレートのパスを設定
