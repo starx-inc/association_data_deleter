@@ -2,16 +2,6 @@ module AssociationDataDeleter
   class Engine < ::Rails::Engine
     config.engine_name = "association_data_deleter"
     
-    # ビューの検索パスを明示的に設定
-    initializer "association_data_deleter.append_views" do |app|
-      # GemのPathを取得
-      gem_path = Gem::Specification.find_by_name('association_data_deleter').gem_dir
-      view_path = File.join(gem_path, 'lib', 'association_data_deleter', 'views')
-      
-      # ビューパスをアプリケーションに追加
-      ActionController::Base.prepend_view_path(view_path)
-    end
-    
     # テンプレートのパスを設定
     paths["app/views"] = "lib/association_data_deleter/views"
     
