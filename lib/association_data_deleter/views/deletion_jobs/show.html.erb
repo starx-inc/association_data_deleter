@@ -55,8 +55,8 @@
         <th>テーブル名</th>
         <th>table_name</th>
         <th>foreign_key</th>
-        <th>polimophic_id</th>
-        <th>polimophic_type</th>
+        <th>polymorphic_id</th>
+        <th>polymorphic_type</th>
         <th>status</th>
         <th>削除数/対象数</th>
         <th>開始時刻</th>
@@ -72,12 +72,12 @@
           <td><%= detail.table_name %></td>
           <td><%= detail.table_name %></td>
           <td><%= detail.foreign_key %></td>
-          <td><%= detail.polimophic_id %></td>
-          <td><%= detail.polimophic_type %></td>
+          <td><%= detail.polymorphic_id %></td>
+          <td><%= detail.polymorphic_type %></td>
           <td><%= detail.status %></td>
           <td><%= detail.deleted_count %> / <%= detail.target_count %></td>
           <td><%= detail.started_at %></td>
-          <td><%= detail.completed_at %></td>
+          <td><%= detail.finished_at %></td>
           <td><%= detail.last_deleted_id %></td>
           <td><%= detail.error_message %></td>
         </tr>
