@@ -16,23 +16,5 @@ module AssociationDataDeleter
       # 明示的にテンプレートを指定
       render template: "deletion_jobs/index", layout: 'application'
     end
-
-    def show
-      begin
-        @deletion_job = AssociationDataDeleter::DeletionJob.find(params[:id])
-        @deletion_job_details = @deletion_job.deletion_job_details
-      rescue ActiveRecord::StatementInvalid => e
-        # エラーが発生した場合は接続を使って直接クエリを実行
-        connection = ActiveRecord::Base.connection
-        job_attrs = connection.exec_query("SELECT * FROM deletion_jobs WHERE id = #{params[:id].to_i} LIMIT 1").first
-        @deletion_job = DeletionJob.new(job_attrs)
-        
-        details_attrs = connection.exec_query("SELECT * FROM deletion_job_details WHERE deletion_job_id = #{params[:id].to_i}")
-        @deletion_job_details = details_attrs.map { |attrs| DeletionJobDetail.new(attrs) }
-      end
-      
-      # 明示的にテンプレートを指定
-      render template: "deletion_jobs/show", layout: 'application'
-    end
   end
 end 
