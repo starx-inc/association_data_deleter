@@ -1,4 +1,4 @@
-<h1>削除進捗詳細画面</h1>
+<h1>削除進捗詳細情報</h1>
 
 <div class="card mb-4">
   <div class="card-body">
@@ -66,7 +66,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @deletion_job.deletion_details.each do |detail| %>
+      <% @deletion_job.deletion_job_details.each do |detail| %>
         <tr>
           <td><%= detail.id %></td>
           <td><%= detail.table_name %></td>
