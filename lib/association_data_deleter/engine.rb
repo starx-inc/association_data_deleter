@@ -1,10 +1,7 @@
 module AssociationDataDeleter
   class Engine < ::Rails::Engine
     config.engine_name = "association_data_deleter"
-    
-    # テンプレートのパスを設定
-    paths["app/views"] = "lib/association_data_deleter/views"
-    
+
     # テーブル名プレフィックスを明示的に空に設定
     initializer "association_data_deleter.set_table_name_prefix", before: :load_config_initializers do
       ActiveRecord::Base.table_name_prefix = '' if defined?(ActiveRecord)
