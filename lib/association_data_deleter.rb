@@ -9,5 +9,5 @@ require_relative "association_data_deleter/models/deletion_job"
 require_relative "association_data_deleter/models/deletion_job_detail"
 
 module AssociationDataDeleter
-  class Error < StandardError;
+  class Error < StandardError; end
 end
