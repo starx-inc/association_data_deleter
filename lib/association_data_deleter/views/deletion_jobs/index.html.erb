@@ -1,1 +1,36 @@
 <h1>削除進捗管理画面</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>削除対象のトップテーブル</th>
+      <th>削除対象ID</th>
+      <th>削除進捗状態</th>
+      <th>削除進捗</th>
+      <th>準備フェーズジョブID</th>
+      <th>削除フェーズジョブID</th>
+      <th>作成日</th>
+      <th>更新日</th>
+      <th>詳細</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @deletion_jobs.each do |job| %>
+      <tr>
+        <td><%= job.id %></td>
+        <td><%= job.target_type %></td>
+        <td><%= job.target_id %></td>
+        <td><%= job.status %></td>
+        <td><%= job.deleted_count %> / <%= job.target_count %></td>
+        <td><%= job.prepare_aws_batch_job_id %></td>
+        <td><%= job.delete_aws_batch_job_id %></td>
+        <td><%= job.created_at %></td>
+        <td><%= job.updated_at %></td>
+        <td>
+          <%= link_to "詳細", association_data_deleter_engine.deletion_job_path(job), class: "btn btn-sm btn-info" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table> 
