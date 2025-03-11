@@ -11,4 +11,5 @@ Gem::Specification.new do |spec|
   # Rails/ActiveRecordを使う場合
   spec.add_dependency "rails", ">= 5.1", "< 8.0"
   # など、必要に応じて依存ライブラリを追記
+  spec.add_dependency "aws-sdk-batch", "~> 1.111"
 end
