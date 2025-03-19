@@ -25,7 +25,7 @@ module AssociationDataDeleter
       aws_batch_job_id = batch.submit_preparation_job("preparation_for_job_id_#{@deletion_job.id}", @deletion_job.id.to_s)
       @deletion_job.update(prepare_aws_batch_job_id: aws_batch_job_id)
 
-      redirect_to '/association_data_deleter/deletion_jobs'
+      redirect_to association_data_deleter_engine.deletion_jobs_path
     end
 
     def execute
