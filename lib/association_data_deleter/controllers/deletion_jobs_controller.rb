@@ -21,7 +21,7 @@ module AssociationDataDeleter
       )
       @deletion_job.save!
 
-      redirect_to @deletion_job
+      redirect_to '/association_data_deleter/deletion_jobs'
     end
   end
 end 
