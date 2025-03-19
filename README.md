@@ -32,6 +32,6 @@ Put a button for sending AWS Batch jobs.
 ```ruby
 # app/views/sample.slim
 
-# sample button for preparation job
+# sample button for creating deletion job and senging preparation job
 = button_to 'データ削除準備', '/association_data_deleter/deletion_jobs', method: :post, params: { target_id: resource.id, target_type: 'Target' }
 ```
