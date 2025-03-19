@@ -27,3 +27,11 @@ AssociationDataDeleter.configure do |config|
   config.execution_job_definition = 'sample-execution-job-definition'
 end
 ```
+
+Put a button for sending AWS Batch jobs.
+```ruby
+# app/views/sample.slim
+
+# sample button for preparation job
+= button_to 'データ削除準備', '/association_data_deleter/deletion_jobs', method: :post, params: { target_id: resource.id, target_type: 'Target' }
+```
