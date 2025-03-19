@@ -16,7 +16,8 @@ module AssociationDataDeleter
     def create
       @deletion_job = AssociationDataDeleter::DeletionJob.new(
         target_id: params[:target_id],
-        target_type: params[:target_type]
+        target_type: params[:target_type],
+        status: 'preparing'
       )
       @deletion_job.save!
 
