@@ -12,5 +12,15 @@ module AssociationDataDeleter
 
       render template: "deletion_jobs/show", layout: 'application'
     end
+
+    def create
+      @deletion_job = AssociationDataDeleter::DeletionJob.new(
+        target_id: params[:target_id],
+        target_type: params[:target_type]
+      )
+      @deletion_job.save!
+
+      redirect_to @deletion_job
+    end
   end
 end 
