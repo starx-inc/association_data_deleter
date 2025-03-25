@@ -37,3 +37,11 @@ authenticate :user, ->(u) { u.super_admin? } do
   mount AssociationDataDeleter::Engine, at: "/association_data_deleter"
 end
 ```
+
+Put a button for sending AWS Batch jobs.
+```ruby
+# app/views/sample.slim
+
+# sample button for creating deletion job and senging preparation job
+= button_to 'データ削除準備', association_data_deleter_engine.deletion_jobs_path, method: :post, params: { target_id: resource.id, target_type: 'Target' }
+```
