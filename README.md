@@ -27,3 +27,13 @@ AssociationDataDeleter.configure do |config|
   config.execution_job_definition = 'sample-execution-job-definition'
 end
 ```
+
+Mount association_data_deleter route.
+```ruby
+# config/routes.rb
+
+# sample authentication
+authenticate :user, ->(u) { u.super_admin? } do
+  mount AssociationDataDeleter::Engine, at: "/association_data_deleter"
+end
+```
