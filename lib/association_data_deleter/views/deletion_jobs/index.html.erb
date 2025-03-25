@@ -13,7 +13,8 @@
       <th>作成日</th>
       <th>更新日</th>
       <th>詳細</th>
-      <th>削除実行</th>
+      <th>実行</th>
+      <th>削除</th>
     </tr>
   </thead>
   <tbody>
@@ -33,7 +34,18 @@
         </td>
         <td>
           <% if job.status == 'ready'  %>
-            <%= button_to "実行", association_data_deleter_engine.execute_deletion_job_path(job), method: :post, class: "btn btn-sm btn-info" %>
+            <%= button_to "実行", association_data_deleter_engine.execute_deletion_job_path(job),
+                          method: :post,
+                          class: "btn btn-sm btn-primary",
+                          onclick: "return confirm('このジョブを実行しますか？');" %>
+          <% end %>
+        </td>
+        <td>
+          <% if job.status != 'preparing'  %>
+            <%= button_to "削除", association_data_deleter_engine.deletion_job_path(job),
+                          method: :delete,
+                          class: "btn btn-sm btn-error",
+                          onclick: "return confirm('このジョブを削除しますか？');" %>
           <% end %>
         </td>
       </tr>
