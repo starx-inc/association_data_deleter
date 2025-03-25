@@ -8,8 +8,6 @@ Gem::Specification.new do |spec|
   spec.files         = Dir["lib/**/*", "README.md"]
   spec.require_paths = ["lib"]
 
-  # Rails/ActiveRecordを使う場合
-  spec.add_dependency "rails", ">= 5.1", "< 8.0"
-  # など、必要に応じて依存ライブラリを追記
+  spec.add_dependency "rails", ">= 5.1"
   spec.add_dependency "aws-sdk-batch"
 end
