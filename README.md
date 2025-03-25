@@ -28,6 +28,16 @@ AssociationDataDeleter.configure do |config|
 end
 ```
 
+Mount association_data_deleter route.
+```ruby
+# config/routes.rb
+
+# sample authentication
+authenticate :user, ->(u) { u.super_admin? } do
+  mount AssociationDataDeleter::Engine, at: "/association_data_deleter"
+end
+```
+
 Put a button for sending AWS Batch jobs.
 ```ruby
 # app/views/sample.slim
