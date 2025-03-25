@@ -39,5 +39,11 @@ module AssociationDataDeleter
 
       redirect_to association_data_deleter_engine.deletion_job_path(@deletion_job)
     end
+
+    def destroy
+      AssociationDataDeleter::DeletionJob.find(params[:id]).destroy!
+
+      redirect_to association_data_deleter_engine.deletion_jobs_path
+    end
   end
 end 
