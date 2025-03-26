@@ -8,7 +8,7 @@ class CreateDeletionJobs < ActiveRecord::Migration[5.1]
       t.string :delete_aws_batch_job_id, comment: "実削除フェーズ(AWS Batch)のジョブID"
       t.datetime :prepare_started_at, comment: "準備フェーズ開始時刻"
       t.datetime :prepare_finished_at, comment: "準備フェーズ完了または失敗時刻"
-      t.datetime :delete_started_at,comment: "実データ削除開始時刻"
+      t.datetime :delete_started_at, comment: "実データ削除開始時刻"
       t.datetime :delete_finished_at, comment: "実データ削除完了または失敗時刻"
       t.integer  :deleted_count, comment: "ジョブ全体で削除されたレコード数"
       t.integer  :target_count, comment: "ジョブ全体の削除対象件数"
